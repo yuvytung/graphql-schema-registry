@@ -9,9 +9,12 @@ let producer = null;
 let consumer = null;
 
 export async function init() {
-	const { host, port } = diplomat.getServiceInstance(KAFKA_SCHEMA_REGISTRY);
+	const { host, port, sasl } = diplomat.getServiceInstance(
+		KAFKA_SCHEMA_REGISTRY
+	);
 
 	const kafka = new Kafka({
+		sasl,
 		clientId: process.env.KAFKA_CLIENT || 'graphql-schema-registry-server',
 		brokers: [`${host}:${port}`],
 	});

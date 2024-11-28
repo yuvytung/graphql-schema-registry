@@ -23,6 +23,13 @@ export default {
 		'gql-schema-registry-kafka': {
 			host: process.env.KAFKA_BROKER_HOST || 'gql-schema-registry-kafka',
 			port: process.env.KAFKA_BROKER_PORT || '9092',
+			sasl: process.env.KAFKA_BROKER_USERNAME
+				? {
+						mechanism: 'plain',
+						username: process.env.KAFKA_BROKER_USERNAME,
+						password: process.env.KAFKA_BROKER_PASSWORD,
+				  }
+				: undefined,
 		},
 	},
 	asyncSchemaUpdates: booleanFor(process.env.ASYNC_SCHEMA_UPDATES),
