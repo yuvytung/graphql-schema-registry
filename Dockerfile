@@ -1,5 +1,5 @@
 # 1. BUILD FRONTEND source with webpack
-FROM yuvytung/node as builder-frontend
+FROM yuvytung/node AS builder-frontend
 ARG env=production
 ENV npm_config_cache=/tmp/.npm
 WORKDIR /app
@@ -10,7 +10,7 @@ COPY client ./client
 RUN npm run build-frontend
 
 # 2. BUILD BACKEND source from .ts, uses dev-dependencies
-FROM yuvytung/node as builder-backend
+FROM yuvytung/node AS builder-backend
 ARG env=production
 ENV npm_config_cache=/tmp/.npm
 WORKDIR /app
